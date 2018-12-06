@@ -9,7 +9,8 @@ The DID subject is comprised of:
 
 # A Simple DID document
 
-```{
+```
+{
   "@context": "https://w3id.org/did/v1",
   "id": "did:ln:523226:1367:0",
   "publicKey": [{
@@ -35,4 +36,5 @@ The DID subject is comprised of:
     "type": "TrustOracle",
     "serviceEndpoint": "https://runcrypto.com/endpoint/8377464"
   }]
-}```
+}
+```
