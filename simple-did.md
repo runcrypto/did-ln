@@ -31,7 +31,8 @@ The DID subject is comprised of:
     "publicKey": "did:ln:523226:1367:0#keys-1"
   }],
   "service": [{
-    "type": "ExampleService",
-    "serviceEndpoint": "https://example.com/endpoint/8377464"
+    // announcement of public key for trust oracle
+    "type": "TrustOracle",
+    "serviceEndpoint": "https://runcrypto.com/endpoint/8377464"
   }]
 }```
