@@ -1,2 +1,2 @@
-# did-
+# did:⚡:
 Lightning Network DID Method
