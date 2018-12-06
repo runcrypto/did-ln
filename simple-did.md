@@ -3,9 +3,9 @@
 ```did:ln:523226:1367:0```
 
 The DID subject is comprised of:
-* "DID" : Subject
-* "ln" : Method
-* "523226:1367:0" : short channel Id (specific-idstring)
+* ```DID``` : Subject
+* ```ln``` : Method
+* ```523226:1367:0``` : short channel Id (specific-idstring)
 
 # A Simple DID document
 
