@@ -2,7 +2,7 @@
 Lightning Network DID Method
 
 ## Background
-At the time of writing, there are solutions using blockchains/distributed ledgers that are being used to implement systems providing self-sovereign identities.  Both private (Sovrin) and public (BTCR) blockchain solutions have been created and consolodate around the idea of Digital Identity Documents (DID) in which there has considerable progress in creating a standard (see [https://w3c-ccg.github.io/did-spec/|wc3 DID-spec]).
+At the time of writing, there are solutions using blockchains/distributed ledgers that are being used to implement systems providing self-sovereign identities.  Both private (Sovrin) and public (BTCR) blockchain solutions have been created and consolodate around the idea of Digital Identity Documents (DID) in which there has considerable progress in creating a standard (see https://w3c-ccg.github.io/did-spec/).
 
 When thinking about the nature of trust and the current implementation models, the following points come to mind:  
 - Trust in the state of a system can be managed by software
