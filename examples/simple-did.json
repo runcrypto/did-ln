@@ -1,0 +1,23 @@
+{
+  "@context": "https://w3id.org/did/v1",
+  "id": "did:ln:523226:1367:0",
+  "publicKey": [{
+    "id": "did:ln:523226:1367:0#keys-1",
+    "type": "Secp256k1VerificationKey2018",
+    "owner": "025bcdb70ef32090dc87b48da91fcc72c47b17e577e91c862d9dd93ea200dd11d@127.0.0.1:19740",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY-----025bcdb70ef32090dc87b48da91fcc72c47b17e577e91c862d9dd93ea200dd11d6-----END PUBLIC KEY-----\r\n"
+  },{
+   "id": "did:ln:523226:1367:0#keys-2",
+    "type": "Secp256k1VerificationKey2018",
+    "owner": "023572333e3bb92751076cac23b4d0542d27a56f790c8ed2192bd92eba0b40ea1b@127.0.0.1:19741",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY-----023572333e3bb92751076cac23b4d0542d27a56f790c8ed2192bd92eba0b40ea1b-----END PUBLIC KEY-----\r\n"
+  }],
+  "authentication": [{
+    "type": "Secp256k1VerificationKey2018",
+    "publicKey": "did:ln:523226:1367:0#keys-1"
+  }],
+  "service": [{
+    "type": "TrustOracle",
+    "serviceEndpoint": "https://runcrypto.com/endpoint/8377464"
+  }]
+}
