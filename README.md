@@ -15,7 +15,7 @@ When thinking about the nature of trust and the current implementation models, t
 One of the problems that creating a decentralised trust model faces is managing the state of the credential, is it valid or invalid at any point in time.  Consider the following points on state:
 - For persistent or time limited credentials (National Insurance Numbers/SSL certificates), the state can be rooted in the credential itself.
 - Where a credential needs to be revocable, the state needs to be rooted outside of the credential.
-- Hyperledger Indy addresses the revocation problem using Cryptographic Accumulators which is complex and not easy to follow.
+- Hyperledger Indy addresses the revocation problem using Cryptographic Accumulators.
 - The state of blockchains are saved in the UTXO set and not the chain itself which only provides a verifiable record of how the UTXO set came to its current state.
 
 ## Proposal
