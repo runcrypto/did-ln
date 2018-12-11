@@ -29,5 +29,17 @@ When proving the credential, the owner is able to verify the ownership of the UT
 
 The credential can be revoked at any point by closing the channel between the provider and owner.  This can be performed by either the provider OR the owner.
 
+## Limitations
+For every channel, an on-chain transaction is required:
+- Transaction costs
+- a number of confirmations are required before the channel is established.
+
+### Managing channels
+- Channel factories can be used to open batches of channels.
+- Closing a channel can be forced to close after 30 seconds.
+
+### Trade-offs
+A couple of things can be done to limit the impact of the limitations: alternate public blockchains to Bitcoin could be used with faster block times and lower fees.  Transaction costs and confirmations could be avoided altogetherby running a federated sidechain.
+
 ## In the wild
 In a broader sense, whenever friction is added to a transaction (requesting proof of age/salary) then there should be a cost to adding that friction.  This will incentivise requests for proof to be used only when they are nessecary and for owners to adopt the system in the first place.  Having the base layer on the lightning network would help facilitate micropayments being built into agents.
