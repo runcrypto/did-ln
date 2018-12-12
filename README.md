@@ -29,6 +29,14 @@ When proving the credential, the owner is able to verify the ownership of the UT
 
 The credential can be revoked at any point by closing the channel between the provider and owner.  This can be performed by either the provider OR the owner.
 
+### Trust Triad
+DID's provide methods for verifying 3 key pieces of data in credentials:
+- The Owner is who they say they are
+- The Provider has supplied the credential
+- The credential is valid and has not been revoked
+Each piece of data can be evaluated independently and adds to the information that the Requestor needs to make an informed decision about trust.
+It is possible for one or more of the endpoints needed for automatic verification to be unavailable and alternate methods for completing the trust triad to be used.
+
 ## Limitations
 For every channel, an on-chain transaction is required:
 - Transaction costs
