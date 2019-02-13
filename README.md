@@ -37,6 +37,15 @@ DID's provide methods for verifying 3 key pieces of data in credentials:
 Each piece of data can be evaluated independently and adds to the information that the Requestor needs to make an informed decision about trust.
 It is possible for one or more of the endpoints needed for automatic verification to be unavailable and alternate methods for completing the trust triad to be used.
 
+The trust model is very similar to legacy certificate authority systems where an agent will have a number of trusted root certificates.  These are based on chains of trust which are typically pre-loaded on devices and not modified.
+An agent should be empowered to choose which providers are trusted.
+
+### Use cases
+- Businesses selling restricted items such as alcohol or ciggarettes, may limit acceptable credentials to government issued ones
+- Potential employers may limit educational credentials to recognised schools or universities.
+- Door security systems may limit credentials to employees of companies renting space in shared office buildings.
+- Homeowners may limit credentials to a tradesman, assigned to perform a particular job by a serviceing company.
+
 ## Limitations
 For every channel, an on-chain transaction is required:
 - Transaction costs
