@@ -18,6 +18,29 @@ One of the problems that creating a decentralised trust model faces is managing 
 - Hyperledger Indy addresses the revocation problem using Cryptographic Accumulators.
 - The state of blockchains are saved in the UTXO set and not the chain itself which only provides a verifiable record of how the UTXO set came to its current state.
 
+## The State Problem
+In order to address the state problem, we need to create a link between two UTXO owners.  This link is to be tranient and given the scope of identity credential management will result in a high volume of links being created and destroyed.
+
+### Blockchain selection
+Using the Bitcoin blockchain for this use case is not viable as it is not suited to handling the transaction volume needed.  To address the tansaction volume requirement, a separate blockchain is required.
+
+The elements project is an open source blockchain implementation that can be deployed as either a standalone blockchain or sidechain with 2 way peg and so will be the codebase to be deployed.
+
+#### Dedicated Blockchain
+If choosing to launch a new blockchain, the problem of issuing and trading tokens would present problems with price manipulation.  Along with this, there may be backlash in the market with the launch of 'yet another blockchain' that needs justification during marketing cycles and with wider technical communities.
+
+#### Sidechain
+By having a sidechain, many of the issues with starting a dedicated blockchain are avoided.  The sidechain builds on the reputation of the bitcoin network and tokens are tied to the price and liquidity of the BTC token. It is a lot easier to justify the existance of a sidechain and validity of the project that has no revenue generation scheme built in (i.e. creator premine).
+
+### Storing state
+Transactional volume is one problem, the other is in the way that state is recorded.  Current implementations use data in transactions to record state in the blockchain which, as discussed previously, does not fit with the idea of state being stored in the blockchain as immuntable and is a square peg in a round hole scenario.  State needs to be stored in the UTXO set and so the following methods have been assessed.
+
+#### Multisig Wallet
+A link between two identities could be created with a multisig 1 of 2 wallet.  Using BIP174 (Partially Signed Bitcoin Transaction) it should be possible to verify ownership of one of the keys without making an onchain transaction (also see https://blockstream.com/2019/02/04/standardizing-bitcoin-proof-of-reserves/).
+
+#### Lightning Channels
+An implementation of the multisig wallet solution is already in existence, with additional features added on, in the lightning network.  It makes sense to use he existing functionality with lightning to build he solution on.  There are channel identifiers that can be used to reference the link and a communication network that may be utilised to perform the state queries.
+
 ## Proposal
 What the Lightning Network method aims to provide is a solution to the state problem by using the lightning network to store the credential state.
 - Identity is rooted in ownership of UTXO's
