@@ -1,0 +1,46 @@
+# @configure_imput@
+
+# VPATH related substitution variables
+
+srcdir = @srcdir@
+VPATH = @srcdir@
+
+# Package related substitution variables
+
+package = @PACKAGE_NAME@
+version = @PACKAGE_VERSION@
+tarname = @PACKAGE_TARNAME@
+distdir = $(tarname)-$(version)
+
+# Prefix related substitution variables
+
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+bindir = @bindir@
+
+all: $(package)
+
+check: all
+	./$(package) | grep "Hello from .*$(package)!"
+	@echo "*** ALL TESTS PASSED ***"
+
+$(package): main.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $+
+
+clean:
+	-rm $(package)
+
+install:
+	install -d $(DESTDIR)$(bindir)
+	install -m 0755 $(package) $(DESTDIR)$(bindir)
+
+uninstall:
+	-rm $(DESTDIR)$(bindir)/$(package)
+
+Makefile: Makefile.in ../config.status
+	cd .. && ./config.status $@
+
+../config.status: ../configure
+	cd .. && ./config.status --recheck
+
+.PHONY: all clean check install uninstall
