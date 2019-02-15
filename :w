@@ -1,0 +1,31 @@
+#include "did.h"
+#include <iostream>
+
+void DID::setContext(char* context)
+{
+	this->context = context;
+}
+
+void DID::setId(char* id)
+{
+	this->id = id;
+}
+
+char* DID::getContext()
+{
+	return this->context;
+}
+
+char* DID:getId()
+{
+	return this->id;
+}
+
+char* DID::getHash()
+{
+	std::hash<char*> ptr_hash;
+	char* hash = this->getId();
+	ptr_hash(hash);
+	//return the hashed did
+	return hash;
+}
