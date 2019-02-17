@@ -1,0 +1,81 @@
+\documentclass[10pt]{article}
+\usepackage{pgf-umlsd}
+\usepackage{hyperref}
+
+\begin{document}
+
+\section{DID}
+A decentralised identifier (DID) is an identifier that isn't issued by a centralised body.  The DID is owned by an entity which can verify control of it using a cryptographically signed document.
+
+The document consists of the following parts:
+\begin{enumerate}
+	\item context: see \href{DID Specification}{https://w3c-ccg.github.io/did-spec/}
+	\item id: the DID
+	\item authentication: the details to authenticate
+	\begin{enumerate}
+		\item id: Identifier for the authentication entry
+		\item type: type of the authentication entry
+		\item controller: the DID providing authentication
+		\item publicKeyPem: the public key of the DID
+	\end{enumerate}
+	
+\end{enumerate}
+
+\subsection{Decentralised Identifiers}
+A DID is a unique identifier which must be persistent and immutable.
+
+The DID method needs to ensure that two entities cannot claim ownership of the same DID.
+
+There is a comparison in the specification of UUID's which are decentralised as a result of their uniqueness, in the same way that Bitcoin addresses are also generated to avoid collisions.
+
+An entity can use a DID to pass to another entity and verify that they are the owner of that DID.  This mechanism is similar somewhat to providing a service with your email address and then clicking a verify link in an email that is subsequently sent to that address.
+
+I'm not sure how well the persistence requirement falls in line with GDPR as there is no right to forget functionality here.  Persistence automatically reduces privacy in a system and so goes against the privacy-by-design principal.
+
+\subsection{DID Document}
+A DID Document contains metadata about a DID.  The DID document is what is exchanged during a interaction between two entities.
+
+The DID Document contains a public key to verify ownership of the DID, using a DID Method
+
+\section{method}
+Creating a DID requires that a DID can be linked to a public key.  The common implementation of this requires that a reference to the DID exists with a reference to the private key.
+
+Bitcoin generates addresses that can be linked back to public keys and so having a UID generated in the same way that a bitcoin address is generated would satisfy the need to derive the UID from a public key.
+
+\subsection{document creation}
+Entity, Issuer and Signer can all be the same entity, different entities or any mixture of.
+\begin{enumerate}
+	\item entity gets a DID using the DID Method
+	\item entity requests a blank document from the issuer
+	\item the issuer creates a document using a Document Descriptor Object
+\end{enumerate}
+
+\begin{sequencediagram}
+	\newthread{entity}{:entity}
+	\newinst[1.5]{issuer}{:issuer}
+	\newinst[1.5]{method}{:method}
+	\newinst[1.5]{signer}{:signer}
+	
+	\begin{call}{entity}{getDID(pubkey)}{method}{DID}
+	\end{call}
+	
+	\begin{call}{entity}{createDoc()}{issuer}{doc}
+	\end{call}
+	
+	\begin{call}{entity}{updateDoc(DID,auth,...)}{entity}{}
+	\end{call}
+	
+	\begin{call}{entity}{sign(doc)}{signer}{doc}
+
+		\begin{call}{signer}{validate(doc)}{method}{bool true/false}
+		\end{call}
+
+		\begin{call}{signer}{updateDoc(signature)}{signer}{}
+		\end{call}
+		
+	\end{call}
+	
+\end{sequencediagram}
+
+\end{document}
+
