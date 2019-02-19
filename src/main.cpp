@@ -18,9 +18,9 @@ int main(int argc, char * argv[])
 	// create a DID instance
 	DID mydid;
 	// populate instance attributes
-	mydid.setId(c_id);
-	mydid.setContext(c_context);
+	mydid.id = c_id;
+	mydid.context = c_context;
 
-	std::cout << mydid.toString() << std::endl;
+	std::cout << mydid.context << std::endl;
 	return 0;
 }
