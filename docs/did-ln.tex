@@ -24,14 +24,14 @@ Both private (\href{https://sovrin.org/}{Sovrin}) and public (\href{https://w3c-
 There are 3 main components to Decentralised IDentifiers:
 \begin{itemize}
 	\item DID
-	\item \diddoc
+	\item DID Document
 	\item DID Method
 \end{itemize}
 
 They are used together to define an implementation.
 
 \subsection{DID}
-The DID is a unique reference that is used to root trust in the contents of the \diddoc.  Control of a DID needs to be verified using public.
+The DID is a unique reference that is used to root trust in the contents of the DID Document.  Control of a DID needs to be verified using public.
 
 A DID is a unique identifier which must be persistent and immutable.
 
@@ -39,14 +39,14 @@ The DID method needs to ensure that two entities cannot claim ownership of the s
 
 There is a comparison in the specification of UUID's which are decentralised as a result of their uniqueness, in the same way that Bitcoin addresses are also generated to avoid collisions.
 
-An entity can use a DID to present a \diddoc to another entity and verify that they are the owner of that DID.  This mechanism is similar somewhat to providing a service with your email address and then clicking a verify link in an email that is subsequently sent to that address.
+An entity can use a DID to present a DID Document to another entity and verify that they are the owner of that DID.  This mechanism is similar somewhat to providing a service with your email address and then clicking a verify link in an email that is subsequently sent to that address.
 
-\subsection{\diddoc}
-A \diddoc contains metadata about a DID.  The \diddoc is what is exchanged during a interaction between two entities.
+\subsection{DID Document}
+A DID Document contains metadata about a DID.  The DID Document is what is exchanged during a interaction between two entities.
 
-The \diddoc contains a public key to verify ownership of the DID, using a DID Method.
+The DID Document contains a public key to verify ownership of the DID, using a DID Method.
 
-The \diddoc consists of the following parts: 
+The DID Document consists of the following parts: 
 \begin{center}
 	{\renewcommand{\arraystretch}{2}
 		\begin{tabular}{ |p{2.5cm}|p{2.5cm}|p{6cm}| }
@@ -86,9 +86,13 @@ The bitcoin mantra is very apt here "Don't trust: verify". The goal of any decen
 
 DID's provide methods for verifying 3 key pieces of data in credentials:
 
-    The Owner is who they say they are
-    The Provider has supplied the credential
-    The credential is valid and has not been revoked Each piece of data can be evaluated independently and adds to the information that the Requestor needs to make an informed decision about trust. It is possible for one or more of the endpoints needed for automatic verification to be unavailable and alternate methods for completing the trust triad to be used.
+\begin{itemize}
+	\item The Owner is who they say they are
+	\item The Provider has supplied the credential
+    \item The credential is valid and has not been revoked
+\end{itemize}
+
+Each piece of data can be evaluated independently and adds to the information that the Requestor needs to make an informed decision about trust. It is possible for one or more of the endpoints needed for automatic verification to be unavailable and alternate methods for completing the trust triad to be used.
 
 \subsubsection{Trust Models}
 The trust model is very similar to legacy certificate authority systems where an agent will have a number of trusted root certificates. These are based on chains of trust which are typically pre-loaded on devices and not modified. An agent should be empowered to choose which providers are trusted.
@@ -104,21 +108,17 @@ When thinking about the nature of trust and the current implementation models, t
 \end{itemize}
 
 \subsection{State Management}
-One of the problems that creating a decentralised trust model faces is managing the state of the \diddoc: is it valid or invalid at any point in time. Consider the following points on state:
+One of the problems that creating a decentralised trust model faces is managing the state of the DID Document: is it valid or invalid at any point in time. Consider the following points on state:
 
 \begin{itemize}
-	\item For persistent or time limited \diddoc (National Insurance Numbers/SSL certificates), the state can be rooted in the credential itself.
+	\item For persistent or time limited DID Document (National Insurance Numbers/SSL certificates), the state can be rooted in the credential itself.
 	\item Where a credential needs to be revocable, the state needs to be rooted outside of the credential.
 	\item Hyperledger Indy addresses the revocation problem using Cryptographic Accumulators.
 	\item The state of blockchains are saved in the UTXO set and not the chain itself which only provides a verifiable record of how the UTXO set came to its current state.
 \end{itemize}
 
 \section{Analysis}
-
-\subsection{State Management}
 The state management requires a link between two UTXO owners. This link is to be transient and given the scope of identity credential management will result in a high volume of links being created and destroyed.
-
-\section{Analysis}
 
 \subsection{Blockchain selection}
 
@@ -168,7 +168,7 @@ A couple of things can be done to limit the impact of the limitations: alternate
 In a broader sense, whenever friction is added to a transaction (requesting proof of age/salary) then there should be a cost to adding that friction. This will incentivise requests for proof to be used only when they are nessecary and for owners to adopt the system in the first place. Having the base layer on the lightning network would help facilitate micropayments being built into agents.
 
 \section{Design}
-What the Lightning Network method aims to provide is a solution to the state problem by using the lightning network to store the \diddoc state.
+What the Lightning Network method aims to provide is a solution to the state problem by using the lightning network to store the DID Document state.
 \begin{itemize}
 	\item Identity is rooted in ownership of UTXO's
     \item The owners of UTXO's can be verified using standard signing techniques.
@@ -178,14 +178,14 @@ What the Lightning Network method aims to provide is a solution to the state pro
 
 When proving the credential, the owner is able to verify the ownership of the UTXO (public address) with their private key. The lightning network provides information on the existence of a channel with the provided Id and that the owners UTXO forms one end of the channel. The other end of the channel (the providers public address) will be verifyable via a Trust Oracle of the providers choosing (URL endpoint on a company endpoint).
 \\
-The \diddoc can be revoked at any point by closing the channel between the provider and owner. This can be performed by either the provider OR the owner.
+The DID Document can be revoked at any point by closing the channel between the provider and owner. This can be performed by either the provider OR the owner.
 
 \subsection{document creation}
 Entity, Issuer and Signer can all be the same entity, different entities or any mixture of.
 \begin{enumerate}
 	\item entity gets a DID using the DID Method
-	\item entity requests a blank \diddoc from the issuer
-	\item the issuer creates a \diddoc using a Document Descriptor Object
+	\item entity requests a blank DID Document from the issuer
+	\item the issuer creates a DID Document using a Document Descriptor Object
 \end{enumerate}
 
 \begin{sequencediagram}

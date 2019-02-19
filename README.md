@@ -37,7 +37,9 @@ There are 3 main components to Decentralised IDentifiers:
 
 -   DID
 
--   -   DID Method
+-   DID Document
+
+-   DID Method
 
 They are used together to define an implementation.
 
@@ -45,7 +47,7 @@ DID
 ---
 
 The DID is a unique reference that is used to root trust in the contents
-of the . Control of a DID needs to be verified using public.
+of the DID Document. Control of a DID needs to be verified using public.
 
 A DID is a unique identifier which must be persistent and immutable.
 
@@ -56,18 +58,22 @@ There is a comparison in the specification of UUID’s which are
 decentralised as a result of their uniqueness, in the same way that
 Bitcoin addresses are also generated to avoid collisions.
 
-An entity can use a DID to present a to another entity and verify that
-they are the owner of that DID. This mechanism is similar somewhat to
-providing a service with your email address and then clicking a verify
-link in an email that is subsequently sent to that address.
+An entity can use a DID to present a DID Document to another entity and
+verify that they are the owner of that DID. This mechanism is similar
+somewhat to providing a service with your email address and then
+clicking a verify link in an email that is subsequently sent to that
+address.
 
-A contains metadata about a DID. The is what is exchanged during a
-interaction between two entities.
+DID Document
+------------
 
-The contains a public key to verify ownership of the DID, using a DID
-Method.
+A DID Document contains metadata about a DID. The DID Document is what
+is exchanged during a interaction between two entities.
 
-The consists of the following parts:
+The DID Document contains a public key to verify ownership of the DID,
+using a DID Method.
+
+The DID Document consists of the following parts:
 
   -- -------------- -----------------------------------------
      the DID        
@@ -114,13 +120,17 @@ trust required and instead make any claims verifiable.
 
 DID’s provide methods for verifying 3 key pieces of data in credentials:
 
-The Owner is who they say they are The Provider has supplied the
-credential The credential is valid and has not been revoked Each piece
-of data can be evaluated independently and adds to the information that
-the Requestor needs to make an informed decision about trust. It is
-possible for one or more of the endpoints needed for automatic
-verification to be unavailable and alternate methods for completing the
-trust triad to be used.
+-   The Owner is who they say they are
+
+-   The Provider has supplied the credential
+
+-   The credential is valid and has not been revoked
+
+Each piece of data can be evaluated independently and adds to the
+information that the Requestor needs to make an informed decision about
+trust. It is possible for one or more of the endpoints needed for
+automatic verification to be unavailable and alternate methods for
+completing the trust triad to be used.
 
 ### Trust Models
 
@@ -152,11 +162,12 @@ State Management
 ----------------
 
 One of the problems that creating a decentralised trust model faces is
-managing the state of the : is it valid or invalid at any point in time.
-Consider the following points on state:
+managing the state of the DID Document: is it valid or invalid at any
+point in time. Consider the following points on state:
 
--   For persistent or time limited (National Insurance Numbers/SSL
-    certificates), the state can be rooted in the credential itself.
+-   For persistent or time limited DID Document (National Insurance
+    Numbers/SSL certificates), the state can be rooted in the credential
+    itself.
 
 -   Where a credential needs to be revocable, the state needs to be
     rooted outside of the credential.
@@ -171,15 +182,9 @@ Consider the following points on state:
 Analysis
 ========
 
-State Management
-----------------
-
 The state management requires a link between two UTXO owners. This link
 is to be transient and given the scope of identity credential management
 will result in a high volume of links being created and destroyed.
-
-Analysis
-========
 
 Blockchain selection
 --------------------
@@ -274,7 +279,8 @@ Design
 ======
 
 What the Lightning Network method aims to provide is a solution to the
-state problem by using the lightning network to store the state.
+state problem by using the lightning network to store the DID Document
+state.
 
 -   Identity is rooted in ownership of UTXO’s
 
@@ -294,9 +300,9 @@ provided Id and that the owners UTXO forms one end of the channel. The
 other end of the channel (the providers public address) will be
 verifyable via a Trust Oracle of the providers choosing (URL endpoint on
 a company endpoint).\
-The can be revoked at any point by closing the channel between the
-provider and owner. This can be performed by either the provider OR the
-owner.
+The DID Document can be revoked at any point by closing the channel
+between the provider and owner. This can be performed by either the
+provider OR the owner.
 
 document creation
 -----------------
@@ -306,9 +312,9 @@ or any mixture of.
 
 1.  entity gets a DID using the DID Method
 
-2.  entity requests a blank from the issuer
+2.  entity requests a blank DID Document from the issuer
 
-3.  the issuer creates a using a Document Descriptor Object
+3.  the issuer creates a DID Document using a Document Descriptor Object
 
 [entity]{}[getDID(pubkey)]{}[method]{}[DID]{}
 
