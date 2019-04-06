@@ -316,6 +316,10 @@ or any mixture of.
 
 3.  the issuer creates a DID Document using a Document Descriptor Object
 
+4.  the entity reviews / completes the DID document and adds a digital signature
+
+5.  the issuer reviews the DID document and adds a digital signature
+
 [entity]{}[getDID(pubkey)]{}[method]{}[DID]{}
 
 [entity]{}[createDoc()]{}[issuer]{}[doc]{}
