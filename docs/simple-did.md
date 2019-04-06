@@ -1,6 +1,6 @@
 # A Simple DID
 
-```did:ln:523226:1367:0```
+```did:ln:02cd3967dcef276d329156530a333c0292b43eacd8d229d1d9637a699e12d514e9```
 
 The DID subject is comprised of:
 * ```did``` : Subject
