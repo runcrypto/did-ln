@@ -1,3 +1,13 @@
+> The ability to link the issuer to the holder via a lightning channel is
+> actually achieved via the HTLC contact on the Bitcoin blockchain and so
+> trying to use lightning clients to identify and manage the link just
+> adds complexity when the balance of the funding transaction can be
+> queried using any blockchain explorer.
+>
+> This project is now closed but has provided a valuable insite into the
+> additional features that smart contracts (multisig / timelock) can add
+> to verifiable credentials that warrent further research.
+
 Overview
 ========
 
